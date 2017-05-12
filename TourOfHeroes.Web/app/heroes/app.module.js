@@ -12,14 +12,9 @@ var platform_browser_1 = require('@angular/platform-browser');
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var router_1 = require('@angular/router');
 var angular_in_memory_web_api_1 = require('angular-in-memory-web-api');
 var index_1 = require('./shared/index');
 var app_component_1 = require('./app.component');
-var app_routes_1 = require("./app.routes");
-var index_2 = require("./dashboard/index");
-//import { HeroDetailModule } from "./hero-detail/index";
-var index_3 = require("./heroes/index");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,16 +23,18 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 forms_1.FormsModule,
+                AppRoutingModule,
                 http_1.HttpModule,
-                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(index_1.InMemoryDataService, { delay: 600 }),
-                router_1.RouterModule.forRoot(app_routes_1.routes),
-                index_2.DashboardModule,
-                //HeroDetailModule,
-                index_3.HeroesModule
+                angular_in_memory_web_api_1.InMemoryWebApiModule.forRoot(index_1.InMemoryDataService, { delay: 600 })
             ],
             declarations: [
-                app_component_1.AppComponent
+                app_component_1.AppComponent,
+                DashboardComponent,
+                HeroSearchComponent,
+                HeroesComponent,
+                HeroDetailComponent,
             ],
+            providers: [HeroService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])
