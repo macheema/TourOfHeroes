@@ -8,6 +8,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using System.Web.Http;
 using TourOfHeroes.Web;
+using TourOfHeroes.Web.Mappings;
 
 namespace TourOfHeroes.Web
 {
@@ -18,7 +19,10 @@ namespace TourOfHeroes.Web
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //Initialize AuotMapper library
+            TOHMapper.Initialize();
         }
     }
 }

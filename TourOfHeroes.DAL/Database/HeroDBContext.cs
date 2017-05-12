@@ -1,20 +1,13 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using TourOfHeroes.Domain.Model;
 
 namespace TourOfHeroes.DAL.Database
 {
-    class HeroDBContext : IdentityDbContext
+    public class HeroDBContext : DbContext
     {
         public DbSet<Hero> Heroes { get; set; }
-        HeroDBContext() : base("HeroDBContext")
+        public HeroDBContext() : base("HeroDBContext")
         {
-
         }
     }
 }

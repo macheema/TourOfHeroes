@@ -20,8 +20,8 @@ var HeroSearchService = (function () {
     }
     HeroSearchService.prototype.search = function (term) {
         return this.http
-            .get("app/heroes/?name=" + term)
-            .map(function (r) { return r.json().data; })
+            .get("api/heroes/search/?name=" + term)
+            .map(function (r) { return r.json(); })
             .catch(function (error) {
             console.error('An friendly error occurred', error);
             return Observable_1.Observable.throw(error.message || error);

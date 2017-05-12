@@ -17,7 +17,7 @@ import { HeroesModule } from "./heroes/index";
         BrowserModule,
         FormsModule,
         HttpModule,
-        InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 }),
+        //InMemoryWebApiModule.forRoot(InMemoryDataService, { delay: 600 }),
         RouterModule.forRoot(routes),
         DashboardModule,
         //HeroDetailModule,

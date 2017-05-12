@@ -14,20 +14,26 @@ require('rxjs/add/operator/toPromise');
 var HeroService = (function () {
     function HeroService(http) {
         this.http = http;
-        this.heroesUrl = 'app/heroes'; // URL to web api
+        this.heroesUrl = 'api/heroes'; // URL to web api
     }
     HeroService.prototype.getHeroes = function () {
         return this.http
-            .get(this.heroesUrl)
+            .get(this.heroesUrl + '/getall')
             .toPromise()
             .then(function (response) {
-            return response.json().data;
+            //console.log(response.json());
+            return response.json();
         })
             .catch(this.handleError);
     };
     HeroService.prototype.getHero = function (id) {
-        return this.getHeroes()
-            .then(function (heroes) { return heroes.find(function (hero) { return hero.id === id; }); });
+        return this.http
+            .get(this.heroesUrl + ("/" + id))
+            .toPromise()
+            .then(function (response) {
+            return response.json();
+        })
+            .catch(this.handleError);
     };
     HeroService.prototype.save = function (hero) {
         if (hero.id) {
@@ -50,16 +56,16 @@ var HeroService = (function () {
             'Content-Type': 'application/json'
         });
         return this.http
-            .post(this.heroesUrl, JSON.stringify(hero), { headers: headers })
+            .post(this.heroesUrl + "/add", JSON.stringify(hero), { headers: headers })
             .toPromise()
-            .then(function (res) { return res.json().data; })
+            .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
     // Update existing Hero
     HeroService.prototype.put = function (hero) {
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
-        var url = this.heroesUrl + "/" + hero.id;
+        var url = this.heroesUrl + "/update/" + hero.id;
         return this.http
             .put(url, JSON.stringify(hero), { headers: headers })
             .toPromise()
